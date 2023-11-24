@@ -110,11 +110,11 @@ class AddressBook {
         System.out.print("Enter first name of the contact to edit: ");
         String firstName = scanner.nextLine();
 
-        // Check if a contact with the specified first name exists
+        // Check if a contact with the  first name exists or not
         Contact existingContact = findContact(firstName);
 
         if (existingContact != null) {
-            // Prompt user to edit details for the existing contact
+            // edit details
             System.out.println("Editing contact with first name " + firstName + ":");
             System.out.print("Enter new last name (or press Enter to keep existing): ");
             String newLastName = scanner.nextLine();
@@ -211,6 +211,17 @@ class AddressBook {
             System.out.println("Contact with first name " + firstName + " does not exist. Use option 1 to create a new contact.");
         }
     }
+    void addMultiplePersons() {
+        System.out.print("Enter the number of persons to add: ");
+        int numberOfPersons = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
+
+        for (int i = 0; i < numberOfPersons; i++) {
+            createNewContact();
+        }
+
+        System.out.println(numberOfPersons + " persons added successfully.");
+    }
 
     private Contact findContact(String firstName) {
         for (Contact contact : contacts) {
@@ -238,10 +249,11 @@ public class AddressBookProgram {
             System.out.println("3. Display all contacts");
             System.out.println("4. Edit contact details");
             System.out.println("5. Delete a contact");
-            System.out.println("6. Exit");
+            System.out.println("6. Add multiple persons");
+            System.out.println("7. Exit");
             System.out.print("Enter option: ");
             int option = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
+            scanner.nextLine(); 
 
             switch (option) {
                 case 1:
@@ -260,6 +272,9 @@ public class AddressBookProgram {
                     addressBook.deleteContact();
                     break;
                 case 6:
+                    addressBook.addMultiplePersons();
+                    break;
+                case 7:
                     System.out.println("Exiting....");
                     System.exit(0);
                 default:
