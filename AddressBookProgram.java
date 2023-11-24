@@ -158,6 +158,20 @@ class AddressBook {
         }
     }
 
+    void deleteContact() {
+        System.out.print("Enter first name of the contact to delete: ");
+        String firstName = scanner.nextLine();
+
+        // Check if a contact with the specified first name exists
+        Contact existingContact = findContact(firstName);
+
+        if (existingContact != null) {
+            contacts.remove(existingContact);
+            System.out.println("Contact with first name " + firstName + " deleted successfully.");
+        } else {
+            System.out.println("Contact with first name " + firstName + " does not exist.");
+        }
+    }
 
     void fillContactDetails() {
         System.out.print("Enter first name of the contact to fill details: ");
@@ -223,10 +237,11 @@ public class AddressBookProgram {
             System.out.println("2. Fill contact details");
             System.out.println("3. Display all contacts");
             System.out.println("4. Edit contact details");
-            System.out.println("5. Exit");
+            System.out.println("5. Delete a contact");
+            System.out.println("6. Exit");
             System.out.print("Enter option: ");
             int option = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine(); // Consume the newline character
 
             switch (option) {
                 case 1:
@@ -242,6 +257,9 @@ public class AddressBookProgram {
                     addressBook.editContact();
                     break;
                 case 5:
+                    addressBook.deleteContact();
+                    break;
+                case 6:
                     System.out.println("Exiting....");
                     System.exit(0);
                 default:
